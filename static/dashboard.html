@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Welcome To Dashboard</h1>
+
+
+    <script>
+
+        async function getUser() {
+
+            const result = await fetch('/api/get_profile', {
+                method: 'get',
+                headers: {
+                    'Authorizarion': "Bearer"+ localStorage.getItem('token')
+                }
+
+            }).then((res) => res.json())
+
+            if (result.status == true) {
+                // everythign went fine
+                alert(result.name)
+            } else {
+                alert(result.message)
+            }
+        }
+        getUser()
+    </script>
+</body>
+
+</html>
